@@ -112,14 +112,15 @@ function clearCompletedTasks() {
 // Initialize the array of todo items
 // Initialize the array of todo items
 // Initialize the array of todo items
+// Initialize the array of todo items
 const todoItems = [];
 
-
+// Function to generate a unique ID for a todo item
 function generateUniqueId() {
   return todoItems.length;
 }
 
-
+// Function to add a todo item
 function addToDoItem(text) {
   const todoItem = {
     id: generateUniqueId(),
@@ -130,7 +131,7 @@ function addToDoItem(text) {
   todoItems.push(todoItem);
 }
 
-
+// Function to remove a todo item
 function removeToDoItem(todoId) {
   const indexToRemove = todoItems.findIndex((item) => item.id === todoId);
   if (indexToRemove !== -1) {
@@ -138,7 +139,7 @@ function removeToDoItem(todoId) {
   }
 }
 
-
+// Function to mark a todo item as completed
 function markToDoItemAsCompleted(todoId) {
   const todoItem = todoItems.find((item) => item.id === todoId);
   if (todoItem) {
@@ -146,7 +147,7 @@ function markToDoItemAsCompleted(todoId) {
   }
 }
 
-
+// Function to delete a todo item
 function deleteToDoItem(todoId) {
   const indexToRemove = todoItems.findIndex((item) => item.id === todoId);
   if (indexToRemove !== -1) {
@@ -154,18 +155,21 @@ function deleteToDoItem(todoId) {
   }
 }
 
-
+// Function to clear all completed tasks
 function clearCompletedTasks() {
-  const completedTasks = todoItems.filter((item) => !item.completed);
-  todoItems.length = 0; 
-  todoItems.push(...completedTasks);  
+  for (let i = todoItems.length - 1; i >= 0; i--) {
+    if (todoItems[i].completed) {
+      todoItems.splice(i, 1);
+    }
+  }
 }
 
-
+// Example usage
 addToDoItem("Buy groceries");
 addToDoItem("Finish homework");
 markToDoItemAsCompleted(1);
 removeToDoItem(0);
 clearCompletedTasks();
 
-console.log(todoItems); 
+console.log(todoItems); // You can check the updated todoItems array
+
