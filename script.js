@@ -109,3 +109,63 @@ function clearCompletedTasks() {
 //  console.log(todoItems); // This should show the todo item you added
 //  removeToDoItem(0); // This should remove the todo item with ID 0 from the array
 //  markToDoItemAsCompleted(0); // This should mark the todo item with ID 0 as completed
+// Initialize the array of todo items
+// Initialize the array of todo items
+// Initialize the array of todo items
+const todoItems = [];
+
+
+function generateUniqueId() {
+  return todoItems.length;
+}
+
+
+function addToDoItem(text) {
+  const todoItem = {
+    id: generateUniqueId(),
+    text: text,
+    completed: false,
+  };
+
+  todoItems.push(todoItem);
+}
+
+
+function removeToDoItem(todoId) {
+  const indexToRemove = todoItems.findIndex((item) => item.id === todoId);
+  if (indexToRemove !== -1) {
+    todoItems.splice(indexToRemove, 1);
+  }
+}
+
+
+function markToDoItemAsCompleted(todoId) {
+  const todoItem = todoItems.find((item) => item.id === todoId);
+  if (todoItem) {
+    todoItem.completed = true;
+  }
+}
+
+
+function deleteToDoItem(todoId) {
+  const indexToRemove = todoItems.findIndex((item) => item.id === todoId);
+  if (indexToRemove !== -1) {
+    todoItems.splice(indexToRemove, 1);
+  }
+}
+
+
+function clearCompletedTasks() {
+  const completedTasks = todoItems.filter((item) => !item.completed);
+  todoItems.length = 0; 
+  todoItems.push(...completedTasks);  
+}
+
+
+addToDoItem("Buy groceries");
+addToDoItem("Finish homework");
+markToDoItemAsCompleted(1);
+removeToDoItem(0);
+clearCompletedTasks();
+
+console.log(todoItems); 
